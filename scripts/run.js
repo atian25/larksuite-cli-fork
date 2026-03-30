@@ -17,5 +17,8 @@ if (!fs.existsSync(bin)) {
 try {
   execFileSync(bin, process.argv.slice(2), { stdio: "inherit" });
 } catch (e) {
+  if (e.code && !e.status) {
+    console.error(`Failed to run lark-cli: ${e.message}`);
+  }
   process.exit(e.status || 1);
 }
