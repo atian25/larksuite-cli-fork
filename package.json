@@ -6,6 +6,7 @@
     "lark-cli": "scripts/run.js"
   },
   "scripts": {
+    "test": "node test/run.test.js",
     "postinstall": "node scripts/install.js"
   },
   "os": [

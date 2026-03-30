@@ -4,7 +4,12 @@ const path = require("path");
 const fs = require("fs");
 
 const pkg = require("../package.json");
-const binName = Object.keys(pkg.bin)[0];
+const pkgDir = path.join(__dirname, "..");
+const thisScript = path.relative(pkgDir, __filename).replace(/\\/g, "/");
+const binEntry = Object.entries(pkg.bin).find(
+  ([, v]) => v.replace(/^\.\//, "") === thisScript
+);
+const binName = binEntry ? binEntry[0] : Object.keys(pkg.bin)[0];
 const ext = process.platform === "win32" ? ".exe" : "";
 const bin = path.join(__dirname, "..", "bin", binName + ext);
 
