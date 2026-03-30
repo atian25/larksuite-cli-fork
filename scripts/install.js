@@ -4,9 +4,10 @@ const https = require("https");
 const { execSync } = require("child_process");
 const os = require("os");
 
-const VERSION = require("../package.json").version;
+const pkg = require("../package.json");
+const VERSION = pkg.version;
 const REPO = "larksuite/cli";
-const NAME = "lark-cli";
+const NAME = Object.keys(pkg.bin)[0];
 
 const PLATFORM_MAP = {
   darwin: "darwin",
